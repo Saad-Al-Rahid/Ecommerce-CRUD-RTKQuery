@@ -1,7 +1,15 @@
-import { useGetProductsQuery } from "../../services/productsApi";
+import {
+  useDeleteProductsMutation,
+  useGetProductsQuery,
+} from "../../services/productsApi";
 
 const ViewProduct = () => {
   const { isLoading, isError, data: products } = useGetProductsQuery();
+  const [deleteProducts] = useDeleteProductsMutation();
+
+  const handleDelete = async (id) => {
+    await deleteProducts(id);
+  };
 
   return (
     <div>
@@ -18,6 +26,7 @@ const ViewProduct = () => {
                 <p>Description: {product.description}</p>
                 <p>Price: ${product.price}</p>
                 <p>Category: {product.category}</p>
+                <button onClick={() => handleDelete(product.id)}>Delete</button>
               </article>
             );
           })}

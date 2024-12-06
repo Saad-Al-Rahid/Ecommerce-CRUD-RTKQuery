@@ -4,7 +4,6 @@ import ViewProduct from './features/products/ViewProduct'
 const App = () => {
   return (
     <>
-      App
       <ViewProduct />
     </>
   )
